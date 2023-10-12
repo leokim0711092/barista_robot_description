@@ -29,6 +29,19 @@
             </geometry>
             <material name = "red"/>
         </visual>
+
+        <collision>
+            <geometry>
+                <cylinder radius = "0.178" length = "0.155"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <mass value="8"/>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <inertia ixx="0.079385" ixy="0" ixz="0" iyy="0.079385" iyz="0" izz="0.126736"/>
+        </inertial>
+
     </link>
 
     <joint name = "base_main_joint" type = "fixed">
@@ -46,15 +59,28 @@
             </geometry>
             <material name = "black"/>
         </visual>
+
+        <collision>
+            <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius = "0.0352" length = "0.0206"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <mass value="0.2"/>
+            <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
+            <inertia ixx="0.000069" ixy="0" ixz="0" iyy="0.000124" iyz="0" izz="0.000069"/>
+        </inertial>
     </link>
 
-    <joint name = "main_leftwheel_joint" type = "fixed">
+    <joint name = "main_leftwheel_joint" type = "continuous">
         <origin rpy = "0 0 0" xyz = "0 0.14 -0.0775" />
         <parent link = "main_body" />
         <child link = "left_wheel" />
-        <!-- <axis rpy="0 0 0" xyz="0 1 0"/>
+        <axis rpy="0 0 0" xyz="0 1 0"/>
         <limit effort="10000" velocity="1000"/>
-        <joint_properties damping="1.0" friction="1.0"/> -->
+        <joint_properties damping="1.0" friction="1.0"/>
     </joint>
 
 <!-- right wheel  -->
@@ -66,17 +92,230 @@
             </geometry>
             <material name = "black"/>
         </visual>
+
+        <collision>
+            <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius = "0.0352" length = "0.0206"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <mass value="0.2"/>
+            <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
+            <inertia ixx="0.000069" ixy="0" ixz="0" iyy="0.000124" iyz="0" izz="0.000069"/>
+        </inertial>
+
     </link>
 
-    <joint name = "main_rightwheel_joint" type = "fixed">
+    <joint name = "main_rightwheel_joint" type = "continuous">
         <origin rpy = "0 0 0" xyz = "0 -0.14 -0.0775" />
         <parent link = "main_body" />
         <child link = "right_wheel" />
-        <!-- <axis rpy="0 0 0" xyz="0 1 0"/>
+        <axis rpy="0 0 0" xyz="0 1 0"/>
         <limit effort="10000" velocity="1000"/>
-        <joint_properties damping="1.0" friction="1.0"/> -->
+        <joint_properties damping="1.0" friction="1.0"/>
     </joint>
+<!-- Caster Wheel Front -->
+  <link name="front_yaw_link">
+      <visual>
+        <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
+        <geometry>
+            <cylinder radius = "0.0352" length = "0.0206"/>
+        </geometry>
+        <material name = "blue"/>
+      </visual>
 
+      <collision>
+        <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
+        <geometry>
+            <cylinder radius = "0.0352" length = "0.0206"/>
+        </geometry>
+      </collision>
+
+      <inertial>
+        <mass value="0.2"/>
+        <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
+        <inertia ixx="0.000069" ixy="0" ixz="0" iyy="0.000124" iyz="0" izz="0.000069"/>
+      </inertial>
+
+  </link>
+
+  <joint name="front_yaw_joint" type="continuous">
+    <origin rpy="0 0 0" xyz="0.12 0 -0.0775" />
+    <parent link="main_body" />
+    <child link="front_yaw_link" />
+    <axis xyz="0 0 1" />
+    <limit effort="1000.0" velocity="100.0" />
+    <dynamics damping="0.0" friction="0.1"/>
+  </joint>
+
+
+
+  <link name="front_roll_link">
+      <visual>
+        <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
+        <geometry>
+            <cylinder radius = "0.0352" length = "0.0206"/>
+        </geometry>
+        <material name = "red"/>
+      </visual>
+
+      <collision>
+        <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
+        <geometry>
+            <cylinder radius = "0.0352" length = "0.0206"/>
+        </geometry>
+      </collision>
+
+      <inertial>
+        <mass value="0.2"/>
+        <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
+        <inertia ixx="0.000069" ixy="0" ixz="0" iyy="0.000124" iyz="0" izz="0.000069"/>
+      </inertial>
+  </link>
+
+  <joint name="front_roll_joint" type="continuous">
+    <origin rpy="0 0 0" xyz="0 0 0" />
+    <parent link="front_yaw_link" />
+    <child link="front_roll_link" />
+    <axis xyz="1 0 0" />
+    <limit effort="1000.0" velocity="100.0" />
+    <dynamics damping="0.0" friction="0.1"/>
+  </joint>
+
+
+  <link name="front_pitch_link">
+    <visual>
+      <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.0352"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+
+    <collision>
+      <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.0352"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+        <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
+        <mass value="0.2"/>
+        <inertia ixx="9.9E-05" ixy="0" ixz="0" iyy="9.9E-05" iyz="0" izz="9.9E-05"/>
+    </inertial>
+  </link>
+
+  <joint name="front_pitch_joint" type="continuous">
+    <origin rpy="0 0 0" xyz="0 0 0" />
+    <parent link="front_roll_link" />
+    <child link="front_pitch_link" />
+    <axis xyz="0 1 0" />
+    <limit effort="1000.0" velocity="100.0" />
+    <dynamics damping="0.0" friction="0.1"/>
+  </joint>
+<!-- Caster Wheel Back -->
+  <link name="back_yaw_link">
+      <visual>
+        <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
+        <geometry>
+            <cylinder radius = "0.0352" length = "0.0206"/>
+        </geometry>
+        <material name = "blue"/>
+      </visual>
+
+      <collision>
+        <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
+        <geometry>
+            <cylinder radius = "0.0352" length = "0.0206"/>
+        </geometry>
+      </collision>
+
+      <inertial>
+        <mass value="0.2"/>
+        <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
+        <inertia ixx="0.000069" ixy="0" ixz="0" iyy="0.000124" iyz="0" izz="0.000069"/>
+      </inertial>
+
+  </link>
+
+  <joint name="back_yaw_joint" type="continuous">
+    <origin rpy="0 0 0" xyz="-0.12 0 -0.0775" />
+    <parent link="main_body" />
+    <child link="back_yaw_link" />
+    <axis xyz="0 0 1" />
+    <limit effort="1000.0" velocity="100.0" />
+    <dynamics damping="0.0" friction="0.1"/>
+  </joint>
+
+
+
+  <link name="back_roll_link">
+      <visual>
+        <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
+        <geometry>
+            <cylinder radius = "0.0352" length = "0.0206"/>
+        </geometry>
+        <material name = "red"/>
+      </visual>
+
+      <collision>
+        <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
+        <geometry>
+            <cylinder radius = "0.0352" length = "0.0206"/>
+        </geometry>
+      </collision>
+
+      <inertial>
+        <mass value="0.2"/>
+        <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
+        <inertia ixx="0.000069" ixy="0" ixz="0" iyy="0.000124" iyz="0" izz="0.000069"/>
+      </inertial>
+  </link>
+
+  <joint name="back_roll_joint" type="continuous">
+    <origin rpy="0 0 0" xyz="0 0 0" />
+    <parent link="back_yaw_link" />
+    <child link="back_roll_link" />
+    <axis xyz="1 0 0" />
+    <limit effort="1000.0" velocity="100.0" />
+    <dynamics damping="0.0" friction="0.1"/>
+  </joint>
+
+
+  <link name="back_pitch_link">
+    <visual>
+      <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.0352"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+
+    <collision>
+      <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.0352"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+        <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
+        <mass value="0.2"/>
+        <inertia ixx="9.9E-05" ixy="0" ixz="0" iyy="9.9E-05" iyz="0" izz="9.9E-05"/>
+    </inertial>
+  </link>
+
+  <joint name="back_pitch_joint" type="continuous">
+    <origin rpy="0 0 0" xyz="0 0 0" />
+    <parent link="back_roll_link" />
+    <child link="back_pitch_link" />
+    <axis xyz="0 1 0" />
+    <limit effort="1000.0" velocity="100.0" />
+    <dynamics damping="0.0" friction="0.1"/>
+  </joint>
 <!-- left standoff rods  -->
     <link name = "left_standoff_rod">
         <visual>
@@ -86,15 +325,25 @@
             </geometry>
             <material name = "white"/>
         </visual>
+
+        <collision>
+            <geometry>
+                <cylinder radius = "0.01" length = "0.220"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <mass value="0.2"/>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <inertia ixx="0.000812" ixy="0" ixz="0" iyy="0.000812" iyz="0" izz="0.00001"/>
+        </inertial>
+
     </link>
 
     <joint name = "main_leftrod_joint" type = "fixed">
         <origin rpy = "0 0 0" xyz = "0 0.13 0.1875" />
         <parent link = "main_body" />
         <child link = "left_standoff_rod" />
-        <!-- <axis rpy="0 0 0" xyz="0 1 0"/>
-        <limit effort="10000" velocity="1000"/>
-        <joint_properties damping="1.0" friction="1.0"/> -->
     </joint>
 
 <!-- right standoff rods  -->
@@ -106,15 +355,25 @@
             </geometry>
             <material name = "white"/>
         </visual>
+
+        <collision>
+            <geometry>
+                <cylinder radius = "0.01" length = "0.220"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <mass value="0.2"/>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <inertia ixx="0.000812" ixy="0" ixz="0" iyy="0.000812" iyz="0" izz="0.00001"/>
+        </inertial>
+
     </link>
 
     <joint name = "main_rightrod_joint" type = "fixed">
         <origin rpy = "0 0 0" xyz = "0 -0.13 0.1875" />
         <parent link = "main_body" />
         <child link = "right_standoff_rod" />
-        <!-- <axis rpy="0 0 0" xyz="0 1 0"/>
-        <limit effort="10000" velocity="1000"/>
-        <joint_properties damping="1.0" friction="1.0"/> -->
     </joint>
 <!-- Cup holder tray  -->
     <link name = "cup_holder_tray">
@@ -125,15 +384,25 @@
             </geometry>
             <material name = "red"/>
         </visual>
+
+        <collision>
+            <geometry>
+                <cylinder radius = "0.16" length = "0.09"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <mass value="1"/>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <inertia ixx="0.007075" ixy="0" ixz="0" iyy="0.007075" iyz="0" izz="0.0128"/>
+        </inertial>
+
     </link>
 
     <joint name = "main_cupholdertray_joint" type = "fixed">
         <origin rpy = "0 0 0" xyz = "0 0 0.3375" />
         <parent link = "main_body" />
         <child link = "cup_holder_tray" />
-        <!-- <axis rpy="0 0 0" xyz="0 1 0"/>
-        <limit effort="10000" velocity="1000"/>
-        <joint_properties damping="1.0" friction="1.0"/> -->
     </joint>
 
 
@@ -145,14 +414,24 @@
                 <mesh filename="package://barista_robot_description/meshes/hokuyo_urg_04lx.dae" scale = "1 1 1"/>
             </geometry>
         </visual>
+
+        <collision>
+            <geometry>
+                <cylinder radius = "0.025" length = "0.04"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <mass value="0.2"/>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <inertia ixx="0.000058" ixy="0" ixz="0" iyy="0.000058" iyz="0" izz="0.000062"/>
+        </inertial>
+        
     </link>
 
     <joint name = "main_laserlink_joint" type = "fixed">
         <origin rpy = "0 0 0" xyz = "0 0 0.0775" />
         <parent link = "main_body" />
         <child link = "laser_link" />
-        <!-- <axis rpy="0 0 0" xyz="0 1 0"/>
-        <limit effort="10000" velocity="1000"/>
-        <joint_properties damping="1.0" friction="1.0"/> -->
     </joint>
 </robot>
