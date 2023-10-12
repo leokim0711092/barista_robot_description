@@ -1,0 +1,158 @@
+<?xml version = "1.0"?>
+
+<robot name = "cafeteria robots">
+
+    <material name = "red">
+        <color rgba = "1 0 0 0.8 "/>
+    </material>
+
+    <material name = "white">
+        <color rgba = "1 1 1 1 "/>
+    </material>
+    
+    <material name = "blue">
+        <color rgba = "0 0 0.9 0.8 "/>
+    </material>
+
+    <material name = "black">
+        <color rgba = "0.1 0.1 0.1 1 "/>
+    </material>
+
+
+    <link name = "base_link">
+    </link>
+<!-- Main body -->
+    <link name = "main_body">
+        <visual>
+            <geometry>
+                <cylinder radius = "0.178" length = "0.155"/>
+            </geometry>
+            <material name = "red"/>
+        </visual>
+    </link>
+
+    <joint name = "base_main_joint" type = "fixed">
+        <origin rpy = "0 0 0" xyz = "0 0 0.1127" />
+        <parent link = "base_link" />
+        <child link = "main_body" />
+    </joint>
+
+<!-- left wheel  -->
+    <link name = "left_wheel">
+        <visual>
+            <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius = "0.0352" length = "0.0206"/>
+            </geometry>
+            <material name = "black"/>
+        </visual>
+    </link>
+
+    <joint name = "main_leftwheel_joint" type = "fixed">
+        <origin rpy = "0 0 0" xyz = "0 0.14 -0.0775" />
+        <parent link = "main_body" />
+        <child link = "left_wheel" />
+        <!-- <axis rpy="0 0 0" xyz="0 1 0"/>
+        <limit effort="10000" velocity="1000"/>
+        <joint_properties damping="1.0" friction="1.0"/> -->
+    </joint>
+
+<!-- right wheel  -->
+    <link name = "right_wheel">
+        <visual>
+            <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius = "0.0352" length = "0.0206"/>
+            </geometry>
+            <material name = "black"/>
+        </visual>
+    </link>
+
+    <joint name = "main_rightwheel_joint" type = "fixed">
+        <origin rpy = "0 0 0" xyz = "0 -0.14 -0.0775" />
+        <parent link = "main_body" />
+        <child link = "right_wheel" />
+        <!-- <axis rpy="0 0 0" xyz="0 1 0"/>
+        <limit effort="10000" velocity="1000"/>
+        <joint_properties damping="1.0" friction="1.0"/> -->
+    </joint>
+
+<!-- left standoff rods  -->
+    <link name = "left_standoff_rod">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius = "0.01" length = "0.220"/>
+            </geometry>
+            <material name = "white"/>
+        </visual>
+    </link>
+
+    <joint name = "main_leftrod_joint" type = "fixed">
+        <origin rpy = "0 0 0" xyz = "0 0.13 0.1875" />
+        <parent link = "main_body" />
+        <child link = "left_standoff_rod" />
+        <!-- <axis rpy="0 0 0" xyz="0 1 0"/>
+        <limit effort="10000" velocity="1000"/>
+        <joint_properties damping="1.0" friction="1.0"/> -->
+    </joint>
+
+<!-- right standoff rods  -->
+    <link name = "right_standoff_rod">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius = "0.01" length = "0.220"/>
+            </geometry>
+            <material name = "white"/>
+        </visual>
+    </link>
+
+    <joint name = "main_rightrod_joint" type = "fixed">
+        <origin rpy = "0 0 0" xyz = "0 -0.13 0.1875" />
+        <parent link = "main_body" />
+        <child link = "right_standoff_rod" />
+        <!-- <axis rpy="0 0 0" xyz="0 1 0"/>
+        <limit effort="10000" velocity="1000"/>
+        <joint_properties damping="1.0" friction="1.0"/> -->
+    </joint>
+<!-- Cup holder tray  -->
+    <link name = "cup_holder_tray">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius = "0.16" length = "0.09"/>
+            </geometry>
+            <material name = "red"/>
+        </visual>
+    </link>
+
+    <joint name = "main_cupholdertray_joint" type = "fixed">
+        <origin rpy = "0 0 0" xyz = "0 0 0.3375" />
+        <parent link = "main_body" />
+        <child link = "cup_holder_tray" />
+        <!-- <axis rpy="0 0 0" xyz="0 1 0"/>
+        <limit effort="10000" velocity="1000"/>
+        <joint_properties damping="1.0" friction="1.0"/> -->
+    </joint>
+
+
+<!-- laser  -->
+    <link name = "laser_link">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="package://barista_robot_description/meshes/hokuyo_urg_04lx.dae" scale = "1 1 1"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <joint name = "main_laserlink_joint" type = "fixed">
+        <origin rpy = "0 0 0" xyz = "0 0 0.0775" />
+        <parent link = "main_body" />
+        <child link = "laser_link" />
+        <!-- <axis rpy="0 0 0" xyz="0 1 0"/>
+        <limit effort="10000" velocity="1000"/>
+        <joint_properties damping="1.0" friction="1.0"/> -->
+    </joint>
+</robot>
