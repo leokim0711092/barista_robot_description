@@ -420,9 +420,9 @@
     </plugin>
   </gazebo>
 
-    <!-- <xacro:arg name="include_laser" default="true" /> -->
+    <xacro:arg name="include_laser" default="true" />
     <!-- Laser plugin -->
-    <!-- <xacro:if value="$(arg include_laser)"> -->
+    <xacro:if value="$(arg include_laser)">
         <gazebo reference="laser_link">
             <sensor name="sensor_ray" type="ray">
                 <pose>0 0 0 0 0 0</pose>
@@ -451,5 +451,5 @@
                 </plugin>
             </sensor>
         </gazebo>
-    <!-- </xacro:if> -->
+    </xacro:if>
 </robot>

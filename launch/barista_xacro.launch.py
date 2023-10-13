@@ -48,14 +48,13 @@ def generate_launch_description():
             description='Include laser in the simulation'
             )
 
-
-
     # # Gazebo launch
     gazebo = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(pkg_gazebo_ros, 'launch', 'gazebo.launch.py'),
         )
     )    
+    # include_laser = LaunchConfiguration('include_laser')
 
     # convert XACRO file into URDF
     doc = xacro.parse(open(robot_desc_path))
@@ -63,11 +62,11 @@ def generate_launch_description():
     params = {'robot_description': doc.toxml()}
     
     # Another way to launch xacro file
-    urdf_content = Command([
-        'xacro', ' ',
-        robot_desc_path,
-        ' include_laser:=' , LaunchConfiguration('include_laser')
-    ])
+    # urdf_content = Command([
+    #     'xacro', ' ',
+    #     robot_desc_path,
+    #     ' include_laser:=' , LaunchConfiguration('include_laser')
+    # ])
 
     # Robot State Publisher
 
