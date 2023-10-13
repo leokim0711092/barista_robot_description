@@ -20,8 +20,28 @@ def generate_launch_description():
     print("Fetching URDF ==>")
     robot_desc_path = os.path.join(get_package_share_directory(package_description), "urdf", urdf_file)
     pkg_gazebo_ros = get_package_share_directory('gazebo_ros')
-        
-    # Gazebo launch
+
+    pkg_box_bot_gazebo = get_package_share_directory(package_description)
+    install_dir = get_package_prefix(package_description)
+
+    # Set the path to the WORLD model files. Is to find the models inside the models folder in my_box_bot_gazebo package
+    gazebo_models_path = os.path.join(pkg_box_bot_gazebo, 'meshes')
+    # os.environ["GAZEBO_MODEL_PATH"] = gazebo_models_path
+
+    if 'GAZEBO_MODEL_PATH' in os.environ:
+        os.environ['GAZEBO_MODEL_PATH'] =  os.environ['GAZEBO_MODEL_PATH'] + ':' + install_dir + '/share' + ':' + gazebo_models_path
+    else:
+        os.environ['GAZEBO_MODEL_PATH'] =  install_dir + "/share" + ':' + gazebo_models_path
+
+    if 'GAZEBO_PLUGIN_PATH' in os.environ:
+        os.environ['GAZEBO_PLUGIN_PATH'] = os.environ['GAZEBO_PLUGIN_PATH'] + ':' + install_dir + '/lib'
+    else:
+        os.environ['GAZEBO_PLUGIN_PATH'] = install_dir + '/lib'
+
+    print("GAZEBO MODELS PATH=="+str(os.environ["GAZEBO_MODEL_PATH"]))
+    print("GAZEBO PLUGINS PATH=="+str(os.environ["GAZEBO_PLUGIN_PATH"])) 
+
+    # # Gazebo launch
     gazebo = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(pkg_gazebo_ros, 'launch', 'gazebo.launch.py'),
@@ -40,12 +60,12 @@ def generate_launch_description():
     )
 
     # Joint State Publisher
-    joint_state_publisher_node = Node(
-        package='joint_state_publisher_gui',
-        executable='joint_state_publisher_gui',
-        name='joint_state_publisher_gui',
-        output='screen'
-    )
+    # joint_state_publisher_node = Node(
+    #     package='joint_state_publisher_gui',
+    #     executable='joint_state_publisher_gui',
+    #     name='joint_state_publisher_gui',
+    #     output='screen'
+    # )
 
     #rviz
     rviz_config_dir = os.path.join(get_package_share_directory(package_description), 'rviz', 'urdf.rviz')
@@ -92,9 +112,8 @@ def generate_launch_description():
     return LaunchDescription(
         [            
             robot_state_publisher_node,
-            rviz_node,
             gazebo,
             spawn_robot,
-            joint_state_publisher_node
+            rviz_node
         ]
     )

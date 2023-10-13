@@ -22,24 +22,12 @@
         <material>Gazebo/Red</material>
     </gazebo>
 
-    <gazebo reference="left_wheel">
-        <material>Gazebo/Black</material>
-    </gazebo>
-
-    <gazebo reference="right_wheel">
-        <material>Gazebo/Black</material>
-    </gazebo>
-
     <gazebo reference="front_yaw_link">
         <material>Gazebo/Blue</material>
     </gazebo>
 
     <gazebo reference="front_roll_link">
         <material>Gazebo/Red</material>
-    </gazebo>
-
-    <gazebo reference="front_pitch_link">
-        <material>Gazebo/Black</material>
     </gazebo>
 
     <gazebo reference="back_yaw_link">
@@ -50,20 +38,28 @@
         <material>Gazebo/Red</material>
     </gazebo>
 
-    <gazebo reference="back_pitch_link">
-        <material>Gazebo/Black</material>
-    </gazebo>
-
-    <gazebo reference="left_standoff_rod">
+    <gazebo reference="left_standoff_rod_1">
         <material>Gazebo/White</material>
     </gazebo>
 
-    <gazebo reference="right_standoff_rod">
+    <gazebo reference="right_standoff_rod_1">
+        <material>Gazebo/White</material>
+    </gazebo>
+
+    <gazebo reference="left_standoff_rod_2">
+        <material>Gazebo/White</material>
+    </gazebo>
+
+    <gazebo reference="right_standoff_rod_2">
         <material>Gazebo/White</material>
     </gazebo>
     
     <gazebo reference="cup_holder_tray">
         <material>Gazebo/Red</material>
+    </gazebo>
+
+    <gazebo reference="laser_link">
+        <material>Gazebo/Black</material>
     </gazebo>
 
     <link name = "base_link">
@@ -120,6 +116,14 @@
             <inertia ixx="0.000069" ixy="0" ixz="0" iyy="0.000124" iyz="0" izz="0.000069"/>
         </inertial>
     </link>
+    
+    <gazebo reference="left_wheel">
+        <kp>1000000000000000000000000000.0</kp>
+        <kd>1000000000000000000000000000.0</kd>
+        <mu1>10.0</mu1>
+        <mu2>10.0</mu2>
+        <material>Gazebo/Black</material>
+    </gazebo>
 
     <joint name = "main_leftwheel_joint" type = "continuous">
         <origin rpy = "0 0 0" xyz = "0 0.14 -0.0775" />
@@ -154,6 +158,14 @@
         </inertial>
 
     </link>
+
+    <gazebo reference="right_wheel">
+        <kp>1000000000000000000000000000.0</kp>
+        <kd>1000000000000000000000000000.0</kd>
+        <mu1>10.0</mu1>
+        <mu2>10.0</mu2>
+        <material>Gazebo/Black</material>
+    </gazebo>
 
     <joint name = "main_rightwheel_joint" type = "continuous">
         <origin rpy = "0 0 0" xyz = "0 -0.14 -0.0775" />
@@ -255,6 +267,14 @@
     </inertial>
   </link>
 
+  <gazebo reference="front_pitch_link">
+    <kp>1000000000000000000000000000.0</kp>
+    <kd>1000000000000000000000000000.0</kd>
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <material>Gazebo/Black</material>
+  </gazebo>
+
   <joint name="front_pitch_joint" type="continuous">
     <origin rpy="0 0 0" xyz="0 0 0" />
     <parent link="front_roll_link" />
@@ -354,6 +374,14 @@
         <inertia ixx="9.9E-05" ixy="0" ixz="0" iyy="9.9E-05" iyz="0" izz="9.9E-05"/>
     </inertial>
   </link>
+  
+  <gazebo reference="back_pitch_link">
+    <kp>1000000000000000000000000000.0</kp>
+    <kd>1000000000000000000000000000.0</kd>
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <material>Gazebo/Black</material>
+  </gazebo>
 
   <joint name="back_pitch_joint" type="continuous">
     <origin rpy="0 0 0" xyz="0 0 0" />
@@ -364,7 +392,7 @@
     <dynamics damping="0.0" friction="0.1"/>
   </joint>
 <!-- left standoff rods  -->
-    <link name = "left_standoff_rod">
+    <link name = "left_standoff_rod_1">
         <visual>
             <origin rpy="0 0 0" xyz="0 0 0"/>
             <geometry>
@@ -387,14 +415,13 @@
 
     </link>
 
-    <joint name = "main_leftrod_joint" type = "fixed">
-        <origin rpy = "0 0 0" xyz = "0 0.13 0.1875" />
+    <joint name = "main_leftrod_joint_1" type = "fixed">
+        <origin rpy = "0 0 0" xyz = "0.04 0.13 0.1875" />
         <parent link = "main_body" />
-        <child link = "left_standoff_rod" />
+        <child link = "left_standoff_rod_1" />
     </joint>
 
-<!-- right standoff rods  -->
-    <link name = "right_standoff_rod">
+    <link name = "left_standoff_rod_2">
         <visual>
             <origin rpy="0 0 0" xyz="0 0 0"/>
             <geometry>
@@ -417,10 +444,68 @@
 
     </link>
 
-    <joint name = "main_rightrod_joint" type = "fixed">
-        <origin rpy = "0 0 0" xyz = "0 -0.13 0.1875" />
+    <joint name = "main_leftrod_joint_2" type = "fixed">
+        <origin rpy = "0 0 0" xyz = "-0.04 0.13 0.1875" />
         <parent link = "main_body" />
-        <child link = "right_standoff_rod" />
+        <child link = "left_standoff_rod_2" />
+    </joint>
+<!-- right standoff rods  -->
+    <link name = "right_standoff_rod_1">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius = "0.01" length = "0.220"/>
+            </geometry>
+            <material name = "white"/>
+        </visual>
+
+        <collision>
+            <geometry>
+                <cylinder radius = "0.01" length = "0.220"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <mass value="0.2"/>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <inertia ixx="0.000812" ixy="0" ixz="0" iyy="0.000812" iyz="0" izz="0.00001"/>
+        </inertial>
+
+    </link>
+
+    <joint name = "main_rightrod_joint_1" type = "fixed">
+        <origin rpy = "0 0 0" xyz = "0.04 -0.13 0.1875" />
+        <parent link = "main_body" />
+        <child link = "right_standoff_rod_1" />
+    </joint>
+
+    <link name = "right_standoff_rod_2">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius = "0.01" length = "0.220"/>
+            </geometry>
+            <material name = "white"/>
+        </visual>
+
+        <collision>
+            <geometry>
+                <cylinder radius = "0.01" length = "0.220"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <mass value="0.2"/>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <inertia ixx="0.000812" ixy="0" ixz="0" iyy="0.000812" iyz="0" izz="0.00001"/>
+        </inertial>
+
+    </link>
+
+    <joint name = "main_rightrod_joint_2" type = "fixed">
+        <origin rpy = "0 0 0" xyz = "-0.04 -0.13 0.1875" />
+        <parent link = "main_body" />
+        <child link = "right_standoff_rod_2" />
     </joint>
 <!-- Cup holder tray  -->
     <link name = "cup_holder_tray">
@@ -481,4 +566,84 @@
         <parent link = "main_body" />
         <child link = "laser_link" />
     </joint>
+
+<!-- PLUGINS -->
+
+  <!-- JOINT PUBLISHER -->
+  <gazebo>
+    <plugin name="barstina_bot_joint_state" filename="libgazebo_ros_joint_state_publisher.so">
+      <ros>
+          <remapping>~/out:=joint_states</remapping>
+      </ros>
+      <update_rate>30</update_rate>
+
+      <joint_name>main_leftwheel_joint</joint_name>
+      <joint_name>main_rightwheel_joint</joint_name>
+      <joint_name>front_yaw_joint</joint_name>
+      <joint_name>back_yaw_joint</joint_name>
+      <joint_name>front_roll_joint</joint_name>
+      <joint_name>back_roll_joint</joint_name>
+      <joint_name>front_pitch_joint</joint_name>
+      <joint_name>back_pitch_joint</joint_name>
+
+    </plugin>
+  </gazebo>
+
+  <!-- Differential drive -->
+  <gazebo>
+    <plugin filename="libgazebo_ros_diff_drive.so" name="differential_drive_controller">
+
+      <!-- wheels -->
+      <left_joint>main_leftwheel_joint</left_joint>
+      <right_joint>main_rightwheel_joint</right_joint>
+
+      <!-- kinematics -->
+      <wheel_separation>0.1</wheel_separation>
+      <wheel_diameter>0.07</wheel_diameter>
+
+      <!-- limits -->
+      <max_wheel_torque>1.0</max_wheel_torque>
+      <max_wheel_acceleration>2.0</max_wheel_acceleration>
+
+      <!-- output -->
+      <publish_odom>true</publish_odom>
+      <publish_odom_tf>true</publish_odom_tf>
+
+      <command_topic>cmd_vel</command_topic>
+
+      <odometry_frame>odom</odometry_frame>
+      <robot_base_frame>base_link</robot_base_frame>
+
+    </plugin>
+  </gazebo>
+  
+    <gazebo reference="laser_link">
+        <sensor name="sensor_ray" type="ray">
+            <pose>0 0 0 0 0 0</pose>
+            <ray>
+            <scan>
+                <horizontal>
+                <samples>200</samples>
+                <resolution>1.0</resolution>
+                <min_angle>-3.14</min_angle>
+                <max_angle>3.14</max_angle>
+                </horizontal>
+            </scan>
+            <range>
+                <min>0.4</min>
+                <max>5.0</max>
+            </range>
+            </ray>
+            <always_on>true</always_on>
+            <visualize>true</visualize>
+            <update_rate>100.0</update_rate>
+            <plugin name="laser_link" filename="libgazebo_ros_ray_sensor.so">
+            <ros>
+                <remapping>~/out:=scan</remapping>
+            </ros>
+            <output_type>sensor_msgs/LaserScan</output_type>
+            </plugin>
+        </sensor>
+    </gazebo>
+
 </robot>
