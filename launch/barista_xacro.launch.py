@@ -62,11 +62,11 @@ def generate_launch_description():
     params = {'robot_description': doc.toxml()}
     
     # Another way to launch xacro file
-    # urdf_content = Command([
-    #     'xacro', ' ',
-    #     robot_desc_path,
-    #     ' include_laser:=' , LaunchConfiguration('include_laser')
-    # ])
+    urdf_content = Command([
+        'xacro', ' ',
+        robot_desc_path,
+        ' include_laser:=' , LaunchConfiguration('include_laser')
+    ])
 
     # Robot State Publisher
 
@@ -75,8 +75,8 @@ def generate_launch_description():
         executable='robot_state_publisher',
         name='robot_state_publisher_node',
         emulate_tty=True,
-        parameters=[params],
-        # parameters=[{'robot_description': urdf_content}],
+        # parameters=[params],
+        parameters=[{'robot_description': urdf_content}],
         output="screen"
     )
 
