@@ -54,7 +54,7 @@ def generate_launch_description():
             os.path.join(pkg_gazebo_ros, 'launch', 'gazebo.launch.py'),
         )
     )    
-    # include_laser = LaunchConfiguration('include_laser')
+    include_laser = LaunchConfiguration('include_laser')
 
     # convert XACRO file into URDF
     doc = xacro.parse(open(robot_desc_path))
@@ -65,7 +65,7 @@ def generate_launch_description():
     urdf_content = Command([
         'xacro', ' ',
         robot_desc_path,
-        ' include_laser:=' , LaunchConfiguration('include_laser')
+        ' include_laser:=' , include_laser
     ])
 
     # Robot State Publisher
@@ -130,10 +130,10 @@ def generate_launch_description():
     # create and return launch description object
     return LaunchDescription(
         [            
+            laser_arg,    
             robot_state_publisher_node,
             gazebo,
             spawn_robot,
-            rviz_node,
-            laser_arg       
+            rviz_node
         ]
     )
