@@ -18,6 +18,53 @@
         <color rgba = "0.1 0.1 0.1 1 "/>
     </material>
 
+    <gazebo reference="main_body">
+        <material>Gazebo/Red</material>
+    </gazebo>
+
+    <gazebo reference="left_wheel">
+        <material>Gazebo/Black</material>
+    </gazebo>
+
+    <gazebo reference="right_wheel">
+        <material>Gazebo/Black</material>
+    </gazebo>
+
+    <gazebo reference="front_yaw_link">
+        <material>Gazebo/Blue</material>
+    </gazebo>
+
+    <gazebo reference="front_roll_link">
+        <material>Gazebo/Red</material>
+    </gazebo>
+
+    <gazebo reference="front_pitch_link">
+        <material>Gazebo/Black</material>
+    </gazebo>
+
+    <gazebo reference="back_yaw_link">
+        <material>Gazebo/Blue</material>
+    </gazebo>
+
+    <gazebo reference="back_roll_link">
+        <material>Gazebo/Red</material>
+    </gazebo>
+
+    <gazebo reference="back_pitch_link">
+        <material>Gazebo/Black</material>
+    </gazebo>
+
+    <gazebo reference="left_standoff_rod">
+        <material>Gazebo/White</material>
+    </gazebo>
+
+    <gazebo reference="right_standoff_rod">
+        <material>Gazebo/White</material>
+    </gazebo>
+    
+    <gazebo reference="cup_holder_tray">
+        <material>Gazebo/Red</material>
+    </gazebo>
 
     <link name = "base_link">
     </link>
