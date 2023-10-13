@@ -33,6 +33,7 @@ install(
     rviz
     launch
 	meshes
+	xacro
   DESTINATION
     share/${PROJECT_NAME}/
 )

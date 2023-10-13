@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="my_box_bot">
+
+    <xacro:macro name="wheel" params="wheel_name">
+
+        <link name = "${wheel_name}">
+            <visual>
+                <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
+                <geometry>
+                    <cylinder radius = "0.0352" length = "0.0206"/>
+                </geometry>
+                <material name = "black"/>
+            </visual>
+
+            <collision>
+                <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
+                <geometry>
+                    <cylinder radius = "0.0352" length = "0.0206"/>
+                </geometry>
+            </collision>
+
+            <inertial>
+                <mass value="0.2"/>
+                <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
+                <inertia ixx="0.000069" ixy="0" ixz="0" iyy="0.000124" iyz="0" izz="0.000069"/>
+            </inertial>
+        </link>
+        
+        <gazebo reference="${wheel_name}">
+            <kp>1000000000000000000000000000.0</kp>
+            <kd>1000000000000000000000000000.0</kd>
+            <mu1>10.0</mu1>
+            <mu2>10.0</mu2>
+            <material>Gazebo/Black</material>
+        </gazebo>
+
+    </xacro:macro>
+
+  <!-- Wheel Left -->
+    <xacro:wheel wheel_name="left_wheel" />
+
+  <!-- Wheel Right -->
+    <xacro:wheel wheel_name="right_wheel" />
+
+</robot>
