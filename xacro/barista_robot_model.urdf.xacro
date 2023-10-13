@@ -6,6 +6,26 @@
 <xacro:include filename="$(find barista_robot_description)/xacro/cup_holder_tray.xacro" />
 <xacro:include filename="$(find barista_robot_description)/xacro/laser_scanner.xacro" />
 
+  <!-- Wheel Left -->
+    <xacro:wheel wheel_name="left_wheel" />
+
+  <!-- Wheel Right -->
+    <xacro:wheel wheel_name="right_wheel" />
+
+  <!-- Standoff Left rod -->
+    <xacro:standoff_rod standoff_rod_name="left_standoff_rod_1" />
+    <xacro:standoff_rod standoff_rod_name="left_standoff_rod_2" />
+
+  <!-- Standoff Right rod -->
+    <xacro:standoff_rod standoff_rod_name="right_standoff_rod_1" />.
+    <xacro:standoff_rod standoff_rod_name="right_standoff_rod_2" />
+
+  <!-- cup_holder_tray -->
+    <xacro:cup_holder_tray cup_holder_tray_name="cup_holder_tray" />.
+
+  <!-- cup_holder_tray -->
+    <xacro:laser_link laser_link_name="laser_link" />.
+
 <!-- Material -->
     <material name = "red">
         <color rgba = "1 0 0 0.8 "/>

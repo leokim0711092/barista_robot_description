@@ -36,10 +36,4 @@
 
     </xacro:macro>
 
-  <!-- Wheel Left -->
-    <xacro:wheel wheel_name="left_wheel" />
-
-  <!-- Wheel Right -->
-    <xacro:wheel wheel_name="right_wheel" />
-
 </robot>

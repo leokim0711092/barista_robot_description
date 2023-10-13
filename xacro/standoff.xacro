@@ -26,12 +26,5 @@
         </link>
 
     </xacro:macro>
-
-  <!-- Standoff Left rod -->
-    <xacro:standoff_rod standoff_rod_name="left_standoff_rod_1" />
-    <xacro:standoff_rod standoff_rod_name="left_standoff_rod_2" />
-  <!-- Standoff Right rod -->
-    <xacro:standoff_rod standoff_rod_name="right_standoff_rod_1" />.
-    <xacro:standoff_rod standoff_rod_name="right_standoff_rod_2" />
     
 </robot>
