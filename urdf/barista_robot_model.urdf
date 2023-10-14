@@ -630,7 +630,7 @@
                 </horizontal>
             </scan>
             <range>
-                <min>0.4</min>
+                <min>0.2</min>
                 <max>5.0</max>
             </range>
             </ray>
