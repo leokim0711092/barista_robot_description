@@ -43,10 +43,12 @@ def generate_launch_description():
     print("GAZEBO MODELS PATH=="+str(os.environ["GAZEBO_MODEL_PATH"]))
     print("GAZEBO PLUGINS PATH=="+str(os.environ["GAZEBO_PLUGIN_PATH"])) 
     
-    #Argument launch
+
     
     robot_name_1 = "robot1"
     # robot_name_2 = "robot2"
+
+    #Argument launch
     laser_arg = DeclareLaunchArgument(
             name = "include_laser",
             default_value='true',
@@ -83,11 +85,12 @@ def generate_launch_description():
 
     # Robot State Publisher
 
-    robot_state_publisher_node = Node(
+    robot_state_publisher_node_1 = Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
-        name='robot_state_publisher_node',
+        name='robot_state_publisher_node_1',
         emulate_tty=True,
+        namespace=robot_name_1,
         # parameters=[params],
         parameters=[{'frame_prefix': robot_name_1+'/', 'use_sim_time': use_sim_time, 'robot_description': urdf_content}],
         output="screen"
@@ -118,29 +121,28 @@ def generate_launch_description():
     # Position and orientation
     # [X, Y, Z]
     position = [0.0, 0.0, 0.2]
+    position_2 = [1.0, 3.0, 0.2]
+
     # [Roll, Pitch, Yaw]
     orientation = [0.0, 0.0, 0.0]
-    # Base Name or robot
-    robot_base_name = "barista_robot"
-    entity_name = robot_base_name+"-"+str(int(random.random()*100000))
 
     # Spawn ROBOT Set Gazebo
-    spawn_robot = Node(
+    spawn_robot_1 = Node(
         package='gazebo_ros',
         executable='spawn_entity.py',
-        name='spawn_entity',
+        name='spawn_entity_1',
         output='screen',
         arguments=['-entity',
-                   entity_name,
+                   'robot1',
                    '-x', str(position[0]), '-y', str(position[1]
                                                      ), '-z', str(position[2]),
                    '-R', str(orientation[0]), '-P', str(orientation[1]
                                                         ), '-Y', str(orientation[2]),
-                   '-topic', '/robot_description'
+                   '-topic', robot_name_1+'/robot_description'
                    ]
     )
 
-    static_tf_pub = Node(
+    static_tf_pub_1 = Node(
         package='tf2_ros',
         executable='static_transform_publisher',
         name='static_transform_publisher_turtle_odom',
@@ -153,11 +155,11 @@ def generate_launch_description():
     return LaunchDescription(
         [                     
             laser_arg,
-            # robot_name_arg,  
-            robot_state_publisher_node,
+            # robot_name_arg,
+            robot_state_publisher_node_1,
             gazebo,
-            spawn_robot,
+            spawn_robot_1,
             rviz_node,
-            static_tf_pub
+            static_tf_pub_1
         ]
     )
