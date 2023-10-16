@@ -45,8 +45,8 @@ def generate_launch_description():
     
 
     
-    robot_name_1 = "robot1"
-    # robot_name_2 = "robot2"
+    robot_name_1 = "rick"
+    robot_name_2 = "morty"
 
     #Argument launch
     laser_arg = DeclareLaunchArgument(
@@ -76,11 +76,18 @@ def generate_launch_description():
     params = {'robot_description': doc.toxml()}
     
     # Another way to launch xacro file
-    urdf_content = Command([
+    urdf_content_1 = Command([
         'xacro', ' ',
         robot_desc_path,' ',
         ' include_laser:=' , include_laser_value, ' ',
         ' robot_name:=', robot_name_1
+    ])
+
+    urdf_content_2 = Command([
+        'xacro', ' ',
+        robot_desc_path,' ',
+        ' include_laser:=' , include_laser_value, ' ',
+        ' robot_name:=', robot_name_2
     ])
 
     # Robot State Publisher
@@ -92,7 +99,18 @@ def generate_launch_description():
         emulate_tty=True,
         namespace=robot_name_1,
         # parameters=[params],
-        parameters=[{'frame_prefix': robot_name_1+'/', 'use_sim_time': use_sim_time, 'robot_description': urdf_content}],
+        parameters=[{'frame_prefix': robot_name_1+'/', 'use_sim_time': use_sim_time, 'robot_description': urdf_content_1}],
+        output="screen"
+    )
+
+    robot_state_publisher_node_2 = Node(
+        package='robot_state_publisher',
+        executable='robot_state_publisher',
+        name='robot_state_publisher_node_2',
+        emulate_tty=True,
+        namespace=robot_name_2,
+        # parameters=[params],
+        parameters=[{'frame_prefix': robot_name_2+'/', 'use_sim_time': use_sim_time, 'robot_description': urdf_content_2}],
         output="screen"
     )
 
@@ -125,7 +143,7 @@ def generate_launch_description():
         name='spawn_entity_1',
         output='screen',
         arguments=['-entity',
-                   'robot1',
+                   'rick',
                    '-x', str(position[0]), '-y', str(position[1]
                                                      ), '-z', str(position[2]),
                    '-R', str(orientation[0]), '-P', str(orientation[1]
@@ -134,13 +152,37 @@ def generate_launch_description():
                    ]
     )
 
+    spawn_robot_2 = Node(
+        package='gazebo_ros',
+        executable='spawn_entity.py',
+        name='spawn_entity_2',
+        output='screen',
+        arguments=['-entity',
+                   'morty',
+                   '-x', str(position_2[0]), '-y', str(position_2[1]
+                                                     ), '-z', str(position_2[2]),
+                   '-R', str(orientation[0]), '-P', str(orientation[1]
+                                                        ), '-Y', str(orientation[2]),
+                   '-topic', robot_name_2+'/robot_description'
+                   ]
+    )
+
     static_tf_pub_1 = Node(
         package='tf2_ros',
         executable='static_transform_publisher',
-        name='static_transform_publisher_turtle_odom',
+        name='static_transform_publisher_turtle_odom_1',
         output='screen',
         emulate_tty=True,
         arguments=['0', '0', '0', '0', '0', '0', 'world', robot_name_1+'/odom']
+    )
+
+    static_tf_pub_2 = Node(
+        package='tf2_ros',
+        executable='static_transform_publisher',
+        name='static_transform_publisher_turtle_odom_2',
+        output='screen',
+        emulate_tty=True,
+        arguments=['0', '0', '0', '0', '0', '0', 'world', robot_name_2+'/odom']
     )
 
     # create and return launch description object
@@ -149,9 +191,12 @@ def generate_launch_description():
             laser_arg,
             # robot_name_arg,
             robot_state_publisher_node_1,
+            robot_state_publisher_node_2,
             gazebo,
             spawn_robot_1,
+            spawn_robot_2,
             rviz_node,
-            static_tf_pub_1
+            static_tf_pub_1,
+            static_tf_pub_2
         ]
     )

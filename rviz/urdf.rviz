@@ -6,18 +6,12 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
-        - /RobotModel1
-        - /RobotModel1/Status1
-        - /RobotModel1/Description Topic1
-        - /RobotModel1/Links1
-        - /TF1
-        - /TF1/Tree1/world1
-        - /TF1/Tree1/world1/robot1/odom1
-        - /TF1/Tree1/world1/robot1/odom1/robot1/base_link1
-        - /TF1/Tree1/world1/robot1/odom1/robot1/base_link1/robot1/main_body1
-        - /LaserScan1
+        - /Rick_model1/Description Topic1
+        - /TF1/Tree1
+        - /Morty_model1/Description Topic1
+        - /Morty_scan1
       Splitter Ratio: 0.5
-    Tree Height: 551
+    Tree Height: 558
   - Class: rviz_common/Selection
     Name: Selection
   - Class: rviz_common/Tool Properties
@@ -67,7 +61,7 @@ Visualization Manager:
         Durability Policy: Volatile
         History Policy: Keep Last
         Reliability Policy: Reliable
-        Value: /robot1/robot_description
+        Value: /rick/robot_description
       Enabled: true
       Links:
         All Links Enabled: true
@@ -157,8 +151,8 @@ Visualization Manager:
       Mass Properties:
         Inertia: false
         Mass: false
-      Name: RobotModel
-      TF Prefix: /robot1
+      Name: Rick_model
+      TF Prefix: /rick
       Update Interval: 0
       Value: true
       Visual Enabled: true
@@ -167,39 +161,73 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: true
-        robot1/back_pitch_link:
+        morty/back_pitch_link:
           Value: true
-        robot1/back_roll_link:
+        morty/back_roll_link:
           Value: true
-        robot1/back_yaw_link:
+        morty/back_yaw_link:
           Value: true
-        robot1/base_link:
+        morty/base_link:
           Value: true
-        robot1/cup_holder_tray:
+        morty/cup_holder_tray:
           Value: true
-        robot1/front_pitch_link:
+        morty/front_pitch_link:
           Value: true
-        robot1/front_roll_link:
+        morty/front_roll_link:
           Value: true
-        robot1/front_yaw_link:
+        morty/front_yaw_link:
           Value: true
-        robot1/laser_link:
+        morty/laser_link:
           Value: true
-        robot1/left_standoff_rod_1:
+        morty/left_standoff_rod_1:
           Value: true
-        robot1/left_standoff_rod_2:
+        morty/left_standoff_rod_2:
           Value: true
-        robot1/left_wheel:
+        morty/left_wheel:
           Value: true
-        robot1/main_body:
+        morty/main_body:
           Value: true
-        robot1/odom:
+        morty/odom:
           Value: true
-        robot1/right_standoff_rod_1:
+        morty/right_standoff_rod_1:
           Value: true
-        robot1/right_standoff_rod_2:
+        morty/right_standoff_rod_2:
           Value: true
-        robot1/right_wheel:
+        morty/right_wheel:
+          Value: true
+        rick/back_pitch_link:
+          Value: true
+        rick/back_roll_link:
+          Value: true
+        rick/back_yaw_link:
+          Value: true
+        rick/base_link:
+          Value: true
+        rick/cup_holder_tray:
+          Value: true
+        rick/front_pitch_link:
+          Value: true
+        rick/front_roll_link:
+          Value: true
+        rick/front_yaw_link:
+          Value: true
+        rick/laser_link:
+          Value: true
+        rick/left_standoff_rod_1:
+          Value: true
+        rick/left_standoff_rod_2:
+          Value: true
+        rick/left_wheel:
+          Value: true
+        rick/main_body:
+          Value: true
+        rick/odom:
+          Value: true
+        rick/right_standoff_rod_1:
+          Value: true
+        rick/right_standoff_rod_2:
+          Value: true
+        rick/right_wheel:
           Value: true
         world:
           Value: true
@@ -210,32 +238,59 @@ Visualization Manager:
       Show Names: false
       Tree:
         world:
-          robot1/odom:
-            robot1/base_link:
-              robot1/main_body:
-                robot1/back_yaw_link:
-                  robot1/back_roll_link:
-                    robot1/back_pitch_link:
+          morty/odom:
+            morty/base_link:
+              morty/main_body:
+                morty/back_yaw_link:
+                  morty/back_roll_link:
+                    morty/back_pitch_link:
                       {}
-                robot1/cup_holder_tray:
+                morty/cup_holder_tray:
                   {}
-                robot1/front_yaw_link:
-                  robot1/front_roll_link:
-                    robot1/front_pitch_link:
+                morty/front_yaw_link:
+                  morty/front_roll_link:
+                    morty/front_pitch_link:
                       {}
-                robot1/laser_link:
+                morty/laser_link:
                   {}
-                robot1/left_standoff_rod_1:
+                morty/left_standoff_rod_1:
                   {}
-                robot1/left_standoff_rod_2:
+                morty/left_standoff_rod_2:
                   {}
-                robot1/left_wheel:
+                morty/left_wheel:
                   {}
-                robot1/right_standoff_rod_1:
+                morty/right_standoff_rod_1:
                   {}
-                robot1/right_standoff_rod_2:
+                morty/right_standoff_rod_2:
                   {}
-                robot1/right_wheel:
+                morty/right_wheel:
+                  {}
+          rick/odom:
+            rick/base_link:
+              rick/main_body:
+                rick/back_yaw_link:
+                  rick/back_roll_link:
+                    rick/back_pitch_link:
+                      {}
+                rick/cup_holder_tray:
+                  {}
+                rick/front_yaw_link:
+                  rick/front_roll_link:
+                    rick/front_pitch_link:
+                      {}
+                rick/laser_link:
+                  {}
+                rick/left_standoff_rod_1:
+                  {}
+                rick/left_standoff_rod_2:
+                  {}
+                rick/left_wheel:
+                  {}
+                rick/right_standoff_rod_1:
+                  {}
+                rick/right_standoff_rod_2:
+                  {}
+                rick/right_wheel:
                   {}
       Update Interval: 0
       Value: true
@@ -257,7 +312,7 @@ Visualization Manager:
       Max Intensity: -999999
       Min Color: 0; 0; 0
       Min Intensity: 999999
-      Name: LaserScan
+      Name: Rick_scan
       Position Transformer: XYZ
       Selectable: true
       Size (Pixels): 3
@@ -269,7 +324,146 @@ Visualization Manager:
         Filter size: 10
         History Policy: Keep Last
         Reliability Policy: Reliable
-        Value: /robot1/scan
+        Value: /rick/scan
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: true
+    - Alpha: 1
+      Class: rviz_default_plugins/RobotModel
+      Collision Enabled: false
+      Description File: ""
+      Description Source: Topic
+      Description Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /morty/robot_description
+      Enabled: true
+      Links:
+        All Links Enabled: true
+        Expand Joint Details: false
+        Expand Link Details: false
+        Expand Tree: false
+        Link Tree Style: Links in Alphabetic Order
+        back_pitch_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        back_roll_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        back_yaw_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        cup_holder_tray:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        front_pitch_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        front_roll_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        front_yaw_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        laser_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_standoff_rod_1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_standoff_rod_2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_wheel:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        main_body:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_standoff_rod_1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_standoff_rod_2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_wheel:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+      Mass Properties:
+        Inertia: false
+        Mass: false
+      Name: Morty_model
+      TF Prefix: /morty
+      Update Interval: 0
+      Value: true
+      Visual Enabled: true
+    - Alpha: 1
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz_default_plugins/LaserScan
+      Color: 255; 255; 255
+      Color Transformer: ""
+      Decay Time: 0
+      Enabled: true
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Max Intensity: 4096
+      Min Color: 0; 0; 0
+      Min Intensity: 0
+      Name: Morty_scan
+      Position Transformer: ""
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.009999999776482582
+      Style: Flat Squares
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /morty/scan
       Use Fixed Frame: true
       Use rainbow: true
       Value: true
@@ -319,7 +513,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 1.9204261302947998
+      Distance: 11.436347961425781
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -334,18 +528,18 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.15039774775505066
+      Pitch: 0.37539762258529663
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 1.5503965616226196
+      Yaw: 0.8303970694541931
     Saved: ~
 Window Geometry:
   Displays:
     collapsed: false
-  Height: 844
+  Height: 851
   Hide Left Dock: false
   Hide Right Dock: false
-  QMainWindow State: 000000ff00000000fd0000000400000000000001ef000002b2fc0200000008fb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005d00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000003e000002b2000000cb00fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261000000010000010f000002b2fc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073010000003e000002b2000000a500fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e100000197000000030000059000000039fc0100000002fb0000000800540069006d00650100000000000005900000027900fffffffb0000000800540069006d0065010000000000000450000000000000000000000286000002b200000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd0000000400000000000001ef000002b9fc0200000008fb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005d00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000003e000002b9000000cb00fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261000000010000010f000002b9fc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073010000003e000002b9000000a500fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e100000197000000030000064000000039fc0100000002fb0000000800540069006d00650100000000000006400000027900fffffffb0000000800540069006d0065010000000000000450000000000000000000000336000002b900000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Selection:
     collapsed: false
   Time:
@@ -354,6 +548,6 @@ Window Geometry:
     collapsed: false
   Views:
     collapsed: false
-  Width: 1424
-  X: 65
-  Y: 24
+  Width: 1600
+  X: 0
+  Y: 0
