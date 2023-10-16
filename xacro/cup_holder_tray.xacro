@@ -9,7 +9,7 @@
                 <geometry>
                     <cylinder radius = "0.16" length = "0.09"/>
                 </geometry>
-                <material name = "red"/>
+                <material name = "${robot_color}"/>
             </visual>
 
             <collision>

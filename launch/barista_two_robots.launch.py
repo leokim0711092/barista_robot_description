@@ -47,6 +47,8 @@ def generate_launch_description():
     
     robot_name_1 = "rick"
     robot_name_2 = "morty"
+    robot_color_1 = "Red"
+    robot_color_2 = "Blue"
 
     #Argument launch
     laser_arg = DeclareLaunchArgument(
@@ -80,14 +82,16 @@ def generate_launch_description():
         'xacro', ' ',
         robot_desc_path,' ',
         ' include_laser:=' , include_laser_value, ' ',
-        ' robot_name:=', robot_name_1
+        ' robot_name:=', robot_name_1, ' ',
+        'robot_color:=', robot_color_1,
     ])
 
     urdf_content_2 = Command([
         'xacro', ' ',
         robot_desc_path,' ',
         ' include_laser:=' , include_laser_value, ' ',
-        ' robot_name:=', robot_name_2
+        ' robot_name:=', robot_name_2, ' ',
+        'robot_color:=', robot_color_2,
     ])
 
     # Robot State Publisher

@@ -6,6 +6,9 @@
 <xacro:include filename="$(find barista_robot_description)/xacro/cup_holder_tray.xacro" />
 <xacro:include filename="$(find barista_robot_description)/xacro/laser_scanner.xacro" />
 
+<xacro:arg name="robot_color" default="Red"/>
+<xacro:property name = "robot_color" value = "$(arg robot_color)"/>
+
   <!-- Wheel Left -->
     <xacro:wheel wheel_name="left_wheel" />
 
@@ -27,7 +30,7 @@
     <xacro:laser_link laser_link_name="laser_link" />.
 
 <!-- Material -->
-    <material name = "red">
+    <material name = "Red">
         <color rgba = "1 0 0 0.8 "/>
     </material>
 
@@ -35,7 +38,7 @@
         <color rgba = "1 1 1 1 "/>
     </material>
     
-    <material name = "blue">
+    <material name = "Blue">
         <color rgba = "0 0 0.9 0.8 "/>
     </material>
 
@@ -44,7 +47,7 @@
     </material>
 
     <gazebo reference="main_body">
-        <material>Gazebo/Red</material>
+        <material>Gazebo/${robot_color}</material>
     </gazebo>
 
     <gazebo reference="front_yaw_link">
@@ -80,7 +83,7 @@
     </gazebo>
     
     <gazebo reference="cup_holder_tray">
-        <material>Gazebo/Red</material>
+        <material>Gazebo/${robot_color}</material>
     </gazebo>
 
     <gazebo reference="laser_link">
@@ -95,7 +98,7 @@
             <geometry>
                 <cylinder radius = "0.178" length = "0.155"/>
             </geometry>
-            <material name = "red"/>
+            <material name = "${robot_color}"/>
         </visual>
 
         <collision>
@@ -144,7 +147,7 @@
         <geometry>
             <cylinder radius = "0.0352" length = "0.0206"/>
         </geometry>
-        <material name = "blue"/>
+        <material name = "Blue"/>
       </visual>
 
       <collision>
@@ -179,7 +182,7 @@
         <geometry>
             <cylinder radius = "0.0352" length = "0.0206"/>
         </geometry>
-        <material name = "red"/>
+        <material name = "Red"/>
       </visual>
 
       <collision>
@@ -252,7 +255,7 @@
         <geometry>
             <cylinder radius = "0.0352" length = "0.0206"/>
         </geometry>
-        <material name = "blue"/>
+        <material name = "Blue"/>
       </visual>
 
       <collision>
@@ -287,7 +290,7 @@
         <geometry>
             <cylinder radius = "0.0352" length = "0.0206"/>
         </geometry>
-        <material name = "red"/>
+        <material name = "Red"/>
       </visual>
 
       <collision>
