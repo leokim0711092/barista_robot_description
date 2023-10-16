@@ -6,6 +6,7 @@ from launch.substitutions import Command, LaunchConfiguration
 from launch_ros.actions import Node
 from launch.actions import DeclareLaunchArgument
 from launch.actions import IncludeLaunchDescription
+from launch.substitutions import TextSubstitution
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from ament_index_python.packages import get_package_prefix
 import xacro
@@ -42,11 +43,20 @@ def generate_launch_description():
     print("GAZEBO MODELS PATH=="+str(os.environ["GAZEBO_MODEL_PATH"]))
     print("GAZEBO PLUGINS PATH=="+str(os.environ["GAZEBO_PLUGIN_PATH"])) 
     
+    #Argument launch
+    robot_name_1 = "robot1"
+    # robot_name_2 = "robot2"
     laser_arg = DeclareLaunchArgument(
             name = "include_laser",
             default_value='true',
             description='Include laser in the simulation'
             )
+
+    # robot_name_arg = DeclareLaunchArgument(
+    #         name = 'robot_name', 
+    #         default_value='robot1', 
+    #         description='Name of the robot')
+
 
     # # Gazebo launch
     gazebo = IncludeLaunchDescription(
@@ -54,7 +64,8 @@ def generate_launch_description():
             os.path.join(pkg_gazebo_ros, 'launch', 'gazebo.launch.py'),
         )
     )    
-    include_laser = LaunchConfiguration('include_laser')
+    include_laser_value = LaunchConfiguration('include_laser')
+    # robot_name = LaunchConfiguration('robot_name', default='default_robot_name')
 
     # convert XACRO file into URDF
     doc = xacro.parse(open(robot_desc_path))
@@ -64,8 +75,9 @@ def generate_launch_description():
     # Another way to launch xacro file
     urdf_content = Command([
         'xacro', ' ',
-        robot_desc_path,
-        ' include_laser:=' , include_laser
+        robot_desc_path,' ',
+        ' include_laser:=' , include_laser_value, ' ',
+        ' robot_name:=', robot_name_1
     ])
 
     # Robot State Publisher
@@ -138,8 +150,9 @@ def generate_launch_description():
 
     # create and return launch description object
     return LaunchDescription(
-        [            
-            laser_arg,    
+        [                     
+            laser_arg,
+            # robot_name_arg,  
             robot_state_publisher_node,
             gazebo,
             spawn_robot,
