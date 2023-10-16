@@ -10,6 +10,7 @@ Panels:
         - /TF1/Tree1
         - /Morty_model1/Description Topic1
         - /Morty_scan1
+        - /Morty_scan1/Status1
       Splitter Ratio: 0.5
     Tree Height: 558
   - Class: rviz_common/Selection
@@ -29,7 +30,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: ""
+    SyncSource: Rick_scan
 Visualization Manager:
   Class: ""
   Displays:
@@ -309,9 +310,9 @@ Visualization Manager:
       Enabled: true
       Invert Rainbow: false
       Max Color: 255; 255; 255
-      Max Intensity: -999999
+      Max Intensity: 0
       Min Color: 0; 0; 0
-      Min Intensity: 999999
+      Min Intensity: 0
       Name: Rick_scan
       Position Transformer: XYZ
       Selectable: true
@@ -436,27 +437,27 @@ Visualization Manager:
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
-        Max Value: 10
-        Min Value: -10
+        Max Value: 4.11749988415977e-06
+        Min Value: 3.3564501791261137e-06
         Value: true
       Axis: Z
       Channel Name: intensity
       Class: rviz_default_plugins/LaserScan
-      Color: 255; 255; 255
-      Color Transformer: ""
+      Color: 0; 0; 255
+      Color Transformer: FlatColor
       Decay Time: 0
       Enabled: true
       Invert Rainbow: false
       Max Color: 255; 255; 255
-      Max Intensity: 4096
+      Max Intensity: 0
       Min Color: 0; 0; 0
       Min Intensity: 0
       Name: Morty_scan
-      Position Transformer: ""
+      Position Transformer: XYZ
       Selectable: true
       Size (Pixels): 3
-      Size (m): 0.009999999776482582
-      Style: Flat Squares
+      Size (m): 0.05000000074505806
+      Style: Boxes
       Topic:
         Depth: 5
         Durability Policy: Volatile
@@ -513,7 +514,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 11.436347961425781
+      Distance: 6.548526763916016
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -528,10 +529,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.37539762258529663
+      Pitch: 0.5303971767425537
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 0.8303970694541931
+      Yaw: 0.7553967833518982
     Saved: ~
 Window Geometry:
   Displays:

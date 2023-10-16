@@ -475,6 +475,7 @@
                     <namespace>${robot_name}</namespace>
                     <remapping>~/out:=scan</remapping>
                 </ros>
+                    <frame_name>${robot_name}/base_link</frame_name>
                 <output_type>sensor_msgs/LaserScan</output_type>
                 </plugin>
             </sensor>
