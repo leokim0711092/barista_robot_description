@@ -44,6 +44,7 @@ def generate_launch_description():
     print("GAZEBO PLUGINS PATH=="+str(os.environ["GAZEBO_PLUGIN_PATH"])) 
     
     #Argument launch
+    
     robot_name_1 = "robot1"
     # robot_name_2 = "robot2"
     laser_arg = DeclareLaunchArgument(
@@ -65,7 +66,7 @@ def generate_launch_description():
         )
     )    
     include_laser_value = LaunchConfiguration('include_laser')
-    # robot_name = LaunchConfiguration('robot_name', default='default_robot_name')
+    use_sim_time = LaunchConfiguration('use_sim_time', default='true') 
 
     # convert XACRO file into URDF
     doc = xacro.parse(open(robot_desc_path))
@@ -88,7 +89,7 @@ def generate_launch_description():
         name='robot_state_publisher_node',
         emulate_tty=True,
         # parameters=[params],
-        parameters=[{'robot_description': urdf_content}],
+        parameters=[{'frame_prefix': robot_name_1+'/', 'use_sim_time': use_sim_time, 'robot_description': urdf_content}],
         output="screen"
     )
 
@@ -145,7 +146,7 @@ def generate_launch_description():
         name='static_transform_publisher_turtle_odom',
         output='screen',
         emulate_tty=True,
-        arguments=['0', '0', '0', '0', '0', '0', 'world', 'odom']
+        arguments=['0', '0', '0', '0', '0', '0', 'world', robot_name_1+'/odom']
     )
 
     # create and return launch description object
