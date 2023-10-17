@@ -232,13 +232,23 @@
     </inertial>
   </link>
 
-  <gazebo reference="front_pitch_link">
-    <kp>1000000000000000000000000000.0</kp>
-    <kd>1000000000000000000000000000.0</kd>
-    <mu1>0.5</mu1>
-    <mu2>0.5</mu2>
-    <material>Gazebo/Black</material>
-  </gazebo>
+    <gazebo reference="front_pitch_link">
+        <mu1>0.0</mu1>
+        <mu2>0.0</mu2>
+        <material>Gazebo/Black</material>
+    </gazebo>
+
+    <gazebo reference="front_yaw_link">
+        <mu1>0.0</mu1>
+        <mu2>0.0</mu2>
+        <material>Gazebo/Black</material>
+    </gazebo>  
+  
+    <gazebo reference="front_roll_link">
+        <mu1>0.0</mu1>
+        <mu2>0.0</mu2>
+        <material>Gazebo/Black</material>
+    </gazebo>
 
   <joint name="front_pitch_joint" type="continuous">
     <origin rpy="0 0 0" xyz="0 0 0" />
@@ -340,13 +350,23 @@
     </inertial>
   </link>
   
-  <gazebo reference="back_pitch_link">
-    <kp>1000000000000000000000000000.0</kp>
-    <kd>1000000000000000000000000000.0</kd>
-    <mu1>0.5</mu1>
-    <mu2>0.5</mu2>
-    <material>Gazebo/Black</material>
-  </gazebo>
+    <gazebo reference="back_pitch_link">
+        <mu1>0.0</mu1>
+        <mu2>0.0</mu2>
+        <material>Gazebo/Black</material>
+    </gazebo>
+
+    <gazebo reference="back_yaw_link">
+        <mu1>0.0</mu1>
+        <mu2>0.0</mu2>
+        <material>Gazebo/Black</material>
+    </gazebo>  
+  
+    <gazebo reference="back_roll_link">
+        <mu1>0.0</mu1>
+        <mu2>0.0</mu2>
+        <material>Gazebo/Black</material>
+    </gazebo>
 
   <joint name="back_pitch_joint" type="continuous">
     <origin rpy="0 0 0" xyz="0 0 0" />
